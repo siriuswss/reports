@@ -21,8 +21,8 @@ keyID <- c("19208", "16184", "12501", "12502", "12500", "16197", "19373", "19374
     "12503", "15205", "67122", "14462", "58208", "18109", "17869", "21414", 
     "14357", "15213", "18128", "18129", "18131")
 
-filename <- paste0("total_data_exon_TimeCourse_Rep1_counts_ex_Log2_RPKM_uniqueOverlap.txt")
-timecourseRep1 <- read.table(paste("Time_course/Rep1/edgeR/", filename, sep = ""))
+filename <- "total_data_exon_TimeCourse_Rep1_counts_ex_Log2_RPKM_uniqueOverlap.txt"
+timecourseRep1 <- read.table(paste0("Time_course/Rep1/edgeR/", filename))
 n1 <- gsub("RNA_Seq_", "", names(timecourseRep1))
 n2 <- gsub("_d", ".d", n1)
 names(timecourseRep1) <- paste(n2, ".1", sep = "")

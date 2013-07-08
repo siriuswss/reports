@@ -195,8 +195,8 @@ keyID &lt;- c(&quot;19208&quot;, &quot;16184&quot;, &quot;12501&quot;, &quot;125
     &quot;12503&quot;, &quot;15205&quot;, &quot;67122&quot;, &quot;14462&quot;, &quot;58208&quot;, &quot;18109&quot;, &quot;17869&quot;, &quot;21414&quot;, 
     &quot;14357&quot;, &quot;15213&quot;, &quot;18128&quot;, &quot;18129&quot;, &quot;18131&quot;)
 
-filename &lt;- paste0(&quot;total_data_exon_TimeCourse_Rep1_counts_ex_Log2_RPKM_uniqueOverlap.txt&quot;)
-timecourseRep1 &lt;- read.table(paste(&quot;Time_course/Rep1/edgeR/&quot;, filename, sep = &quot;&quot;))
+filename &lt;- &quot;total_data_exon_TimeCourse_Rep1_counts_ex_Log2_RPKM_uniqueOverlap.txt&quot;
+timecourseRep1 &lt;- read.table(paste0(&quot;Time_course/Rep1/edgeR/&quot;, filename))
 n1 &lt;- gsub(&quot;RNA_Seq_&quot;, &quot;&quot;, names(timecourseRep1))
 n2 &lt;- gsub(&quot;_d&quot;, &quot;.d&quot;, n1)
 names(timecourseRep1) &lt;- paste(n2, &quot;.1&quot;, sep = &quot;&quot;)
