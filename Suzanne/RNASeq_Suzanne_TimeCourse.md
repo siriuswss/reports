@@ -1,8 +1,4 @@
 
-```r
-library(knitr)
-opts_chunk$set(message = FALSE)
-```
 
 
 
@@ -47,58 +43,16 @@ sel <- names(timecourse)
 temptimecourse <- stack(timecourse, select = sel)
 colnames(temptimecourse) <- c("RPKM", "ind")
 
-id <- as.data.frame(do.call("rbind", strsplit(as.character(temptimecourse$ind), 
+idd <- as.data.frame(do.call("rbind", strsplit(as.character(temptimecourse$ind), 
     "\\.")))
-idd <- t(id)
+# idd <- t(id)
 colnames(idd) <- c("Cond", "Day", "Rep")
-```
-
-```
-## Error: length of 'dimnames' [2] not equal to array extent
-```
-
-```r
 rownames(idd) <- NULL
 timecourse_longShape <- data.frame(idd, temptimecourse$RPKM)
-```
-
-```
-## Error: arguments imply differing number of rows: 3, 369937
-```
-
-```r
 names(timecourse_longShape) <- c(colnames(idd), "RPKM")
-```
-
-```
-## Error: object 'timecourse_longShape' not found
-```
-
-```r
 timecourse_longShape$ID <- rep(rownames(timecourse), length(sel))
-```
-
-```
-## Error: object 'timecourse_longShape' not found
-```
-
-```r
 timecourse_longShape$key <- ifelse(timecourse_longShape$ID %in% keyID, 1, 0)
-```
-
-```
-## Error: object 'timecourse_longShape' not found
-```
-
-```r
 save(timecourse_longShape, file = "timecourse_Rep1_Rep2.rda")
-```
-
-```
-## Error: object 'timecourse_longShape' not found
-```
-
-```r
 
 filename <- paste("total_data_exon_Dosage_DN_counts_ex_Log2_RPKM_uniqueOverlap.txt", 
     sep = "")
@@ -116,8 +70,9 @@ sel <- names(DosageDat)
 tempDosage <- stack(DosageDat, select = sel)
 colnames(tempDosage) <- c("RPKM", "ind")
 
-id <- as.data.frame(strsplit(as.character(tempDosage$ind), "\\_"))
-idd <- t(id)
+idd <- as.data.frame(do.call("rbind", strsplit(as.character(tempDosage$ind), 
+    "\\_")))
+# idd <- t(id)
 colnames(idd) <- c("Cond", "Dosage", "Day")
 rownames(idd) <- NULL
 Dosage_longShape <- data.frame(idd, tempDosage$RPKM)
@@ -131,8 +86,8 @@ sel <- names(DNdat)
 tempDN <- stack(DNdat, select = sel)
 colnames(tempDN) <- c("RPKM", "ind")
 
-id <- as.data.frame(strsplit(as.character(tempDN$ind), "\\_"))
-idd <- t(id)
+idd <- as.data.frame(do.call("rbind", strsplit(as.character(tempDN$ind), "\\.")))
+# idd <- t(id)
 colnames(idd) <- c("Cond")
 rownames(idd) <- NULL
 DN_longShape <- data.frame(idd, tempDN$RPKM)

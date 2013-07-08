@@ -178,10 +178,6 @@ hljs.initHighlightingOnLoad();
 </head>
 
 <body>
-<pre><code class="r">library(knitr)
-opts_chunk$set(message = FALSE)
-</code></pre>
-
 <pre><code class="r">library(ggplot2)
 library(reshape2)
 # library(xtable)
@@ -221,47 +217,17 @@ sel &lt;- names(timecourse)
 temptimecourse &lt;- stack(timecourse, select = sel)
 colnames(temptimecourse) &lt;- c(&quot;RPKM&quot;, &quot;ind&quot;)
 
-id &lt;- as.data.frame(do.call(&quot;rbind&quot;, strsplit(as.character(temptimecourse$ind), 
+idd &lt;- as.data.frame(do.call(&quot;rbind&quot;, strsplit(as.character(temptimecourse$ind), 
     &quot;\\.&quot;)))
-idd &lt;- t(id)
+# idd &lt;- t(id)
 colnames(idd) &lt;- c(&quot;Cond&quot;, &quot;Day&quot;, &quot;Rep&quot;)
-</code></pre>
-
-<pre><code>## Error: length of &#39;dimnames&#39; [2] not equal to array extent
-</code></pre>
-
-<pre><code class="r">rownames(idd) &lt;- NULL
+rownames(idd) &lt;- NULL
 timecourse_longShape &lt;- data.frame(idd, temptimecourse$RPKM)
-</code></pre>
+names(timecourse_longShape) &lt;- c(colnames(idd), &quot;RPKM&quot;)
+timecourse_longShape$ID &lt;- rep(rownames(timecourse), length(sel))
+timecourse_longShape$key &lt;- ifelse(timecourse_longShape$ID %in% keyID, 1, 0)
+save(timecourse_longShape, file = &quot;timecourse_Rep1_Rep2.rda&quot;)
 
-<pre><code>## Error: arguments imply differing number of rows: 3, 369937
-</code></pre>
-
-<pre><code class="r">names(timecourse_longShape) &lt;- c(colnames(idd), &quot;RPKM&quot;)
-</code></pre>
-
-<pre><code>## Error: object &#39;timecourse_longShape&#39; not found
-</code></pre>
-
-<pre><code class="r">timecourse_longShape$ID &lt;- rep(rownames(timecourse), length(sel))
-</code></pre>
-
-<pre><code>## Error: object &#39;timecourse_longShape&#39; not found
-</code></pre>
-
-<pre><code class="r">timecourse_longShape$key &lt;- ifelse(timecourse_longShape$ID %in% keyID, 1, 0)
-</code></pre>
-
-<pre><code>## Error: object &#39;timecourse_longShape&#39; not found
-</code></pre>
-
-<pre><code class="r">save(timecourse_longShape, file = &quot;timecourse_Rep1_Rep2.rda&quot;)
-</code></pre>
-
-<pre><code>## Error: object &#39;timecourse_longShape&#39; not found
-</code></pre>
-
-<pre><code class="r">
 filename &lt;- paste(&quot;total_data_exon_Dosage_DN_counts_ex_Log2_RPKM_uniqueOverlap.txt&quot;, 
     sep = &quot;&quot;)
 DosageDN &lt;- read.table(paste(&quot;Suzanne_New_RNA/edgeR/&quot;, filename, sep = &quot;&quot;))
@@ -278,8 +244,9 @@ sel &lt;- names(DosageDat)
 tempDosage &lt;- stack(DosageDat, select = sel)
 colnames(tempDosage) &lt;- c(&quot;RPKM&quot;, &quot;ind&quot;)
 
-id &lt;- as.data.frame(strsplit(as.character(tempDosage$ind), &quot;\\_&quot;))
-idd &lt;- t(id)
+idd &lt;- as.data.frame(do.call(&quot;rbind&quot;, strsplit(as.character(tempDosage$ind), 
+    &quot;\\_&quot;)))
+# idd &lt;- t(id)
 colnames(idd) &lt;- c(&quot;Cond&quot;, &quot;Dosage&quot;, &quot;Day&quot;)
 rownames(idd) &lt;- NULL
 Dosage_longShape &lt;- data.frame(idd, tempDosage$RPKM)
@@ -293,8 +260,8 @@ sel &lt;- names(DNdat)
 tempDN &lt;- stack(DNdat, select = sel)
 colnames(tempDN) &lt;- c(&quot;RPKM&quot;, &quot;ind&quot;)
 
-id &lt;- as.data.frame(strsplit(as.character(tempDN$ind), &quot;\\_&quot;))
-idd &lt;- t(id)
+idd &lt;- as.data.frame(do.call(&quot;rbind&quot;, strsplit(as.character(tempDN$ind), &quot;\\.&quot;)))
+# idd &lt;- t(id)
 colnames(idd) &lt;- c(&quot;Cond&quot;)
 rownames(idd) &lt;- NULL
 DN_longShape &lt;- data.frame(idd, tempDN$RPKM)
@@ -309,34 +276,18 @@ save(DN_longShape, file = &quot;DN_longShape.rda&quot;)
 
 <pre><code class="r">
 timecouse_dt &lt;- subset(timecourse_longShape, timecourse_longShape$RPKM != -99)
-</code></pre>
-
-<pre><code>## Error: object &#39;timecourse_longShape&#39; not found
-</code></pre>
-
-<pre><code class="r"># dt &lt;- subset(timecouse_dt, Rep==1)
+# dt &lt;- subset(timecouse_dt, Rep==1)
 timecourse_key &lt;- subset(timecouse_dt, key == 1)
-</code></pre>
-
-<pre><code>## Error: object &#39;timecouse_dt&#39; not found
-</code></pre>
-
-<pre><code class="r"># keyGene &lt;- c(&#39;Ptcra&#39;, &#39;Il2ra&#39;, &#39;Cd3e&#39;, &#39;Cd3g&#39;,&#39;Cd3d&#39;, &#39;Il7r&#39;, &#39;Rag1&#39;,
+# keyGene &lt;- c(&#39;Ptcra&#39;, &#39;Il2ra&#39;, &#39;Cd3e&#39;, &#39;Cd3g&#39;,&#39;Cd3d&#39;, &#39;Il7r&#39;, &#39;Rag1&#39;,
 # &#39;Rag2&#39;, &#39;Cd247&#39;, &#39;Hes1&#39;, &#39;Nrarp&#39;, &#39;Gata3&#39;, &#39;Bcl11b&#39;, &#39;MycN&#39;, &#39;Myc&#39;,
 # &#39;Tcf7&#39;, &#39;Dtx1&#39;, &#39;Hey1&#39;, &#39;Notch1&#39;, &#39;Notch2&#39;, &#39;Notch3&#39;)
 
 p &lt;- ggplot() + geom_boxplot(data = timecouse_dt, aes(x = Cond, y = RPKM, color = Cond, 
     fill = Cond)) + facet_grid(Day ~ Rep) + theme_bw()
+p + geom_text(data = timecourse_key, aes(x = Cond, y = RPKM, label = ID))
 </code></pre>
 
-<pre><code>## Error: object &#39;timecouse_dt&#39; not found
-</code></pre>
-
-<pre><code class="r">p + geom_text(data = timecourse_key, aes(x = Cond, y = RPKM, label = ID))
-</code></pre>
-
-<pre><code>## Error: object &#39;p&#39; not found
-</code></pre>
+<p><img src="figure/boxplots%20of%20Timecourse.png" alt="plot of chunk boxplots of Timecourse"/> </p>
 
 <h2>Visualization for &ldquo;Dx&rdquo; dosage data set</h2>
 

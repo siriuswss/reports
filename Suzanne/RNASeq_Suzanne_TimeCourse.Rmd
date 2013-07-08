@@ -1,4 +1,4 @@
-```{r knir-opts}
+```{r knir-opts, echo=FALSE}
 library(knitr)
 opts_chunk$set(message=FALSE)
 ```
@@ -39,8 +39,8 @@ sel <- names(timecourse)
 temptimecourse <- stack(timecourse, select=sel)
 colnames(temptimecourse) <- c("RPKM", "ind")
 
-id <- as.data.frame(do.call("rbind",strsplit(as.character(temptimecourse$ind), "\\.")))
-idd <- t(id)
+idd <- as.data.frame(do.call("rbind",strsplit(as.character(temptimecourse$ind), "\\.")))
+#idd <- t(id)
 colnames(idd) <- c("Cond", "Day", "Rep")
 rownames(idd) <- NULL
 timecourse_longShape <- data.frame(idd, temptimecourse$RPKM)
@@ -63,8 +63,8 @@ sel <- names(DosageDat)
 tempDosage <- stack(DosageDat, select=sel)
 colnames(tempDosage) <- c("RPKM", "ind")
 
-id <- as.data.frame(strsplit(as.character(tempDosage$ind), "\\_"))
-idd <- t(id)
+idd <- as.data.frame(do.call("rbind",strsplit(as.character(tempDosage$ind), "\\_")))
+#idd <- t(id)
 colnames(idd) <- c("Cond", "Dosage", "Day")
 rownames(idd) <- NULL
 Dosage_longShape <- data.frame(idd, tempDosage$RPKM)
@@ -78,8 +78,8 @@ sel <- names(DNdat)
 tempDN <- stack(DNdat, select=sel)
 colnames(tempDN) <- c("RPKM", "ind")
 
-id <- as.data.frame(strsplit(as.character(tempDN$ind), "\\_"))
-idd <- t(id)
+idd <- as.data.frame(do.call("rbind",strsplit(as.character(tempDN$ind), "\\.")))
+#idd <- t(id)
 colnames(idd) <- c("Cond")
 rownames(idd) <- NULL
 DN_longShape <- data.frame(idd, tempDN$RPKM)
