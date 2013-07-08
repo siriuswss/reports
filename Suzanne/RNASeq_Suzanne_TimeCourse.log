@@ -1,0 +1,1310 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdfetex 2013.4.30)  8 JUL 2013 14:14
+entering extended mode
+ %&-line parsing enabled.
+**\nonstopmode \catcode126=12 \def\normaltilde{~}\catcode126=13 \let~\normaltil
+de  \input ./RNASeq_Suzanne_TimeCourse.md
+(./RNASeq_Suzanne_TimeCourse.md
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.4 opts_
+         chunk$set(message = FALSE)
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.12 #
+       library(xtable)
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.15 #
+       library(gdata)
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in vertical mode.
+l.19 #
+      # Reading RPKM data sets
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in vertical mode.
+l.19 ##
+        Reading RPKM data sets
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.22 setwd("/shared/silo_
+                         researcher/Gottardo_R/Sangsoon_working/Hamid_Notch/...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.23 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (43.03271pt too wide) in paragraph at lines 21--23
+[]\tenrm ```r setwd("/shared/silo$[]\teni esearcher=Gottardo[]=Sangsoon[]orking
+=Hamid[]otch=Suzanne[]NA[]eq=RawData=\tenrm ")$ |
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm \ (ligature ``)
+.\tenrm `
+.\tenrm r
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.28 filename <- paste0("total_
+                               data_exon_TimeCourse_Rep1_counts_ex_Log2_RPKM...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.33 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (37.06396pt too wide) in paragraph at lines 28--33
+[]\tenrm filename <- paste0("total$[]\teni ata[]xon[]imeCourse[]ep\tenrm 1[]\te
+ni ounts[]x[]og\tenrm 2[]\teni PKM[]niqueOverlap:txt\tenrm ")\teni timecourseRe
+p\tenrm 1 \teni <|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm ^^L (ligature fi)
+.\tenrm l
+.\tenrm e
+.\tenrm n
+.etc.
+
+
+Overfull \hbox (94.67033pt too wide) in paragraph at lines 28--33
+\tensy ^^@\teni read:table\tenrm (\teni paste\tenrm ("\teni Time[]ourse=Rep\ten
+rm 1\teni =edgeR=\tenrm "\teni ; filename; sep \tenrm = ""))\teni n\tenrm 1 \te
+ni < \tensy ^^@\teni gsub\tenrm ("\teni RNA[]eq[]; \tenrm ""\teni ; names\tenrm
+ (\teni timecourseRep\tenrm 1))\teni n\tenrm 2 \teni <|
+
+\hbox(7.5+2.5)x469.75499
+.\tensy ^^@
+.\teni r
+.\kern0.27779
+.\teni e
+.\teni a
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.34 filename <- paste("total_
+                              data_exon_TimeCourse_Rep2_counts_ex_Log2_RPKM_...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.41 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (74.21663pt too wide) in paragraph at lines 34--41
+[]\tenrm filename <- paste("total$[]\teni ata[]xon[]imeCourse[]ep\tenrm 2[]\ten
+i ounts[]x[]og\tenrm 2[]\teni PKM[]niqueOverlap:txt\tenrm "\teni ; sep \tenrm =
+ "")\teni timecourseRep\tenrm 2 \teni <|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm ^^L (ligature fi)
+.\tenrm l
+.\tenrm e
+.\tenrm n
+.etc.
+
+
+Overfull \hbox (254.42778pt too wide) in paragraph at lines 34--41
+\tensy ^^@\teni read:table\tenrm (\teni paste\tenrm ("\teni Time[]ourse=Rep\ten
+rm 2\teni =edgeR=\tenrm "\teni ; filename; sep \tenrm = ""))\teni timecourseRep
+\tenrm 2\teni T\tenrm 0 \teni < \tensy ^^@\teni data:frame\tenrm (\teni timecou
+rseRep\tenrm 2[\teni ; \tenrm "\teni T\tenrm 0"])\teni rownames\tenrm (\teni ti
+mecourseRep\tenrm 2\teni T\tenrm 0) \teni <|
+
+\hbox(7.5+2.5)x469.75499
+.\tensy ^^@
+.\teni r
+.\kern0.27779
+.\teni e
+.\teni a
+.etc.
+
+
+Overfull \hbox (24.24187pt too wide) in paragraph at lines 34--41
+\tensy ^^@\teni rownames\tenrm (\teni timecourseRep\tenrm 2)\teni names\tenrm (
+\teni timecourseRep\tenrm 2\teni T\tenrm 0) \teni < \tensy ^^@\tenrm "\teni T\t
+enrm 0\teni :\tenrm 2"\teni timecourseRep\tenrm 2 \teni < \tensy ^^@\teni timec
+ourseRep\tenrm 2[\teni ; \tensy ^^@\tenrm 4]$ |
+
+\hbox(7.5+2.5)x469.75499
+.\tensy ^^@
+.\teni r
+.\kern0.27779
+.\teni o
+.\teni w
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.42 n1 <- gsub("_
+                  d", ".d", names(timecourseRep2))
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.45 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (46.48828pt too wide) in paragraph at lines 42--45
+[]\tenrm n1 <- gsub("$[]"\teni ; \tenrm "\teni :d\tenrm "\teni ; names\tenrm (\
+teni timecourseRep\tenrm 2))\teni names\tenrm (\teni timecourseRep\tenrm 2) \te
+ni < \tensy ^^@\teni paste\tenrm (\teni n\tenrm 1\teni ; \tenrm "\teni :\tenrm 
+2"\teni ; sep \tenrm = "")\teni timecourse <|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm n
+.\tenrm 1
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm <
+.etc.
+
+Runaway argument?
+."))) idd <- t(id) colnames(idd) <- c("Cond", "Day", "Rep") ``` 
+! Paragraph ended before \\ was complete.
+<to be read again> 
+                   \par 
+l.55 
+     
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.55 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.57 #
+      # Error: length of 'dimnames' [2] not equal to array extent
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.57 ##
+        Error: length of 'dimnames' [2] not equal to array extent
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.62 timecourse_
+                longShape <- data.frame(idd, temptimecourse$RPKM)
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.66 #
+      # Error: arguments imply differing number of rows: 3, 369937
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.66 ##
+        Error: arguments imply differing number of rows: 3, 369937
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.70 names(timecourse_
+                      longShape) <- c(colnames(idd), "RPKM")
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.72 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.74 #
+      # Error: object 'timecourse_longShape' not found
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.74 ##
+        Error: object 'timecourse_longShape' not found
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.74 ## Error: object 'timecourse_
+                                  longShape' not found
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.76 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.78 timecourse_
+                longShape$ID <- rep(rownames(timecourse), length(sel))
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.82 #
+      # Error: object 'timecourse_longShape' not found
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.82 ##
+        Error: object 'timecourse_longShape' not found
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.82 ## Error: object 'timecourse_
+                                  longShape' not found
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.84 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.86 timecourse_
+                longShape$key <- ifelse(timecourse_longShape$ID %in% keyID, ...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.86 ...course_longShape$key <- ifelse(timecourse_
+                                                  longShape$ID %in% keyID, 1...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.90 #
+      # Error: object 'timecourse_longShape' not found
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.90 ##
+        Error: object 'timecourse_longShape' not found
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.90 ## Error: object 'timecourse_
+                                  longShape' not found
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.92 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.94 save(timecourse_
+                     longShape, file = "timecourse_Rep1_Rep2.rda")
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.96 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.98 #
+      # Error: object 'timecourse_longShape' not found
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.98 ##
+        Error: object 'timecourse_longShape' not found
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.98 ## Error: object 'timecourse_
+                                  longShape' not found
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.100 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.103 filename <- paste("total_
+                               data_exon_Dosage_DN_counts_ex_Log2_RPKM_uniqu...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.106 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (23.32938pt too wide) in paragraph at lines 103--106
+[]\tenrm filename <- paste("total$[]\teni ata[]xon[]osage[]N[]ounts[]x[]og\tenr
+m 2[]\teni PKM[]niqueOverlap:txt\tenrm "\teni ; sep \tenrm = "")\teni DosageDN 
+<|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm ^^L (ligature fi)
+.\tenrm l
+.\tenrm e
+.\tenrm n
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.107 DNdat <- data.frame(DosageDN[, c("DN1_
+                                            GTGGCC_L007", "DN2a_ACTGAT_L007")])
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.110 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (12.92722pt too wide) in paragraph at lines 107--110
+[]\tenrm DNdat <- data.frame(DosageDN[, c("DN1$[]\teni TGGCC[]\tenrm 007"\teni 
+; \tenrm "\teni DN\tenrm 2\teni a[]CTGAT[]\tenrm 007")])\teni rownames\tenrm (\
+teni DNdat\tenrm ) \teni <|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm D
+.\tenrm N
+.\tenrm d
+.\tenrm a
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.112 names(DosageDat) <- c("Dx_
+                                0.5_d7", "Dx_0.75_d7", "Dx_1_d7", "Dx_5_d7",...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Double subscript.
+l.112 ...t) <- c("Dx_0.5_d7", "Dx_0.75_d7", "Dx_1_
+                                                  d7", "Dx_5_d7", "IgG_20_d7",
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+! Double subscript.
+l.112 ..._0.5_d7", "Dx_0.75_d7", "Dx_1_d7", "Dx_5_
+                                                  d7", "IgG_20_d7",
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.114 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (87.48892pt too wide) in paragraph at lines 111--114
+[]\tenrm DosageDat <- DosageDN[, -c(7, 8)] names(DosageDat) <- c("Dx$[]\teni :\
+tenrm 5[]7"\teni ; \tenrm "\teni Dx[]:\tenrm 75[]7"\teni ; \tenrm "\teni Dx[][]
+\tenrm 7"\teni ; \tenrm "\teni Dx[][]\tenrm 7"\teni ; \tenrm "\teni IgG[]\tenrm
+ 0[]7"\teni ; \tenrm "\teni Jx[]\tenrm 0[]7")$ |
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm D
+.\tenrm o
+.\tenrm s
+.\tenrm a
+.etc.
+
+
+Overfull \hbox (16.3013pt too wide) in paragraph at lines 115--118
+[]\tenrm sel <- names(DosageDat) tem-p-Dosage <- stack(DosageDat, se-lect = sel
+) col-names(tempDosage) <- c("RPKM",|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm s
+.\tenrm e
+.\tenrm l
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.etc.
+
+Runaway argument?
+_")) idd <- t(id) colnames(idd) <- c("Cond", "Dosage", "Day") rowname\ETC.
+! Paragraph ended before \\ was complete.
+<to be read again> 
+                   \par 
+l.127 
+      
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.127 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.128 save(Dosage_
+                  longShape, file = "dosage_longShape.rda")
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.129 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Runaway argument?
+_")) idd <- t(id) colnames(idd) <- c("Cond") rownames(idd) <- NULL DN\ETC.
+! Paragraph ended before \\ was complete.
+<to be read again> 
+                   \par 
+l.142 
+      
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.142 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.143 save(DN_
+              longShape, file = "DN_longShape.rda")
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.145 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in vertical mode.
+l.146 #
+       # Visualization for Timecourse dat sets
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in vertical mode.
+l.146 ##
+         Visualization for Timecourse dat sets
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.150 timecouse_
+                dt <- subset(timecourse_longShape, timecourse_longShape$RPKM...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.151 #
+        dt <- subset(timecouse_dt, Rep==1)
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.151 # dt <- subset(timecouse_
+                               dt, Rep==1)
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in math mode.
+l.153 #
+        keyGene <- c('Ptcra', 'Il2ra', 'Cd3e', 'Cd3g','Cd3d', 'Il7r', 'Rag1',
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in math mode.
+l.154 #
+        'Rag2', 'Cd247', 'Hes1', 'Nrarp', 'Gata3', 'Bcl11b', 'MycN', 'Myc',
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in math mode.
+l.155 #
+        'Tcf7', 'Dtx1', 'Hey1', 'Notch1', 'Notch2', 'Notch3')
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.156 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (60.7291pt too wide) in paragraph at lines 150--156
+[]\tenrm timecouse$[]\teni t < \tensy ^^@\teni subset\tenrm (\teni timecourse[]
+ongShape; timecourse[]ongShape$\tenrm RPKM != -99)  dt <- subset(timecouse$[]\t
+eni t; Rep \tenrm ==|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm t
+.\tenrm i
+.\tenrm m
+.\tenrm e
+.etc.
+
+
+Overfull \hbox (575.22485pt too wide) in paragraph at lines 150--156
+\tenrm 1)\teni timecourse[]ey < \tensy ^^@\teni subset\tenrm (\teni timecouse[]
+t; key \tenrm == 1)\teni keyGene < \tensy ^^@\teni c\tenrm ([]\teni Ptcra[];[] 
+Il\tenrm 2\teni ra[];[] Cd\tenrm 3\teni e[];[] Cd\tenrm 3\teni g[];[] Cd\tenrm 
+3\teni d[];[] Il\tenrm 7\teni r[];[] Rag\tenrm 1[]\teni ;[] Rag\tenrm 2[]\teni 
+;[] Cd\tenrm 247[]\teni ;[] Hes\tenrm 1[]\teni ;[] Nrarp[];[] Gata\tenrm 3[]\te
+ni ;[] Bcl\tenrm 11\teni b[];[] MycN[];[] Myc[];[] Tcf\tenrm 7[]\teni ;[] Dtx\t
+enrm 1[]\teni ;[] Hey\tenrm 1[]\teni ;[] Notch\tenrm 1[]\teni ;[] Notch\tenrm 2
+[]\teni ;[] Notch\tenrm 3[])$ |
+
+\hbox(7.51782+2.5)x469.75499
+.\tenrm 1
+.\tenrm )
+.\teni t
+.\teni i
+.\teni m
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.157 p <- ggplot() + geom_
+                           boxplot(data = timecouse_dt, aes(x = Cond, y = RP...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.161 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (29.55205pt too wide) in paragraph at lines 157--161
+\teni Cond\tenrm )) + \teni facet[]rid\tenrm (\teni Day\tenrm ~\teni Rep\tenrm 
+) + \teni theme[]w\tenrm ()\teni p \tenrm + \teni geom[]ext\tenrm (\teni data \
+tenrm = \teni timecourse[]ey; aes\tenrm (\teni x \tenrm = \teni Cond; y \tenrm 
+= \teni RPKM; label \tenrm =|
+
+\hbox(7.5+2.86108)x469.75499, glue set - 1.0
+.\teni C
+.\kern0.71527
+.\teni o
+.\teni n
+.\teni d
+.etc.
+
+! You can't use `macro parameter character #' in vertical mode.
+l.164 #
+       # Visualization for "Dx" dosage data set
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in vertical mode.
+l.164 ##
+         Visualization for "Dx" dosage data set
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.167 Dosage_
+             dt <- subset(Dosage_longShape, Cond == "Dx")
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.169 #
+        dt <- subset(timecouse_dt, Rep==1)
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.169 # dt <- subset(timecouse_
+                               dt, Rep==1)
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in math mode.
+l.171 #
+        keyGene <- c('Ptcra', 'Il2ra', 'Cd3e', 'Cd3g','Cd3d', 'Il7r', 'Rag1',
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in math mode.
+l.172 #
+        'Rag2', 'Cd247', 'Hes1', 'Nrarp', 'Gata3', 'Bcl11b', 'MycN', 'Myc',
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in math mode.
+l.173 #
+        'Tcf7', 'Dtx1', 'Hey1', 'Notch1', 'Notch2', 'Notch3')
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.174 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (25.93163pt too wide) in paragraph at lines 166--174
+[]\tenrm ```r Dosage$[]\teni t < \tensy ^^@\teni subset\tenrm (\teni Dosage[]on
+gShape; Cond \tenrm == "\teni Dx\tenrm ")\teni Dosage[]t < \tensy ^^@\teni subs
+et\tenrm (\teni Dosage[]t; Dosage[]t$\tenrm RPKM|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm \ (ligature ``)
+.\tenrm `
+.\tenrm r
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.etc.
+
+
+Overfull \hbox (294.4721pt too wide) in paragraph at lines 166--174
+\tensy ^^@\teni c\tenrm ([]\teni Ptcra[];[] Il\tenrm 2\teni ra[];[] Cd\tenrm 3\
+teni e[];[] Cd\tenrm 3\teni g[];[] Cd\tenrm 3\teni d[];[] Il\tenrm 7\teni r[];[
+] Rag\tenrm 1[]\teni ;[] Rag\tenrm 2[]\teni ;[] Cd\tenrm 247[]\teni ;[] Hes\ten
+rm 1[]\teni ;[] Nrarp[];[] Gata\tenrm 3[]\teni ;[] Bcl\tenrm 11\teni b[];[] Myc
+N[];[] Myc[];[] Tcf\tenrm 7[]\teni ;[] Dtx\tenrm 1[]\teni ;[] Hey\tenrm 1[]\ten
+i ;[] Notch\tenrm 1[]\teni ;[] Notch\tenrm 2[]\teni ;[] Notch\tenrm 3[])$ |
+
+\hbox(7.51782+2.5)x469.75499
+.\tensy ^^@
+.\teni c
+.\tenrm (
+.\hbox(3.8889+0.0)x2.80556, shifted -3.62892
+..\sevensy 0
+.\teni P
+.etc.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.175 p <- ggplot() + geom_
+                           boxplot(data = Dosage_dt, aes(x = Dosage, y = RPK...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in math mode.
+l.176     fill = Dosage))  #
+                            +facet_grid(.~Dosage)+theme_bw()
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.179 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (31.1579pt too wide) in paragraph at lines 175--179
+\teni Dosage\tenrm )) + \teni facet[]rid\tenrm (\teni :\tenrm ~\teni Dosage\ten
+rm ) + \teni theme[]w\tenrm ()\teni p \tenrm + \teni geom[]ext\tenrm (\teni dat
+a \tenrm = \teni Dosage[]ey; aes\tenrm (\teni x \tenrm = \teni Dosage; y \tenrm
+ = \teni RPKM; label \tenrm =|
+
+\hbox(7.5+2.86108)x469.75499, glue set - 1.0
+.\teni D
+.\kern0.27779
+.\teni o
+.\teni s
+.\teni a
+.etc.
+
+! You can't use `macro parameter character #' in vertical mode.
+l.182 #
+       # Visualization for "IgG" and "Jx" dosage data set
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in vertical mode.
+l.182 ##
+         Visualization for "IgG" and "Jx" dosage data set
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.185 Dosage_
+             dt <- subset(Dosage_longShape, Cond != "Dx")
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.187 #
+        dt <- subset(timecouse_dt, Rep==1)
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.187 # dt <- subset(timecouse_
+                               dt, Rep==1)
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in math mode.
+l.189 #
+        keyGene <- c('Ptcra', 'Il2ra', 'Cd3e', 'Cd3g','Cd3d', 'Il7r', 'Rag1',
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in math mode.
+l.190 #
+        'Rag2', 'Cd247', 'Hes1', 'Nrarp', 'Gata3', 'Bcl11b', 'MycN', 'Myc',
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in math mode.
+l.191 #
+        'Tcf7', 'Dtx1', 'Hey1', 'Notch1', 'Notch2', 'Notch3')
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.192 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (20.93161pt too wide) in paragraph at lines 184--192
+[]\tenrm ```r Dosage$[]\teni t < \tensy ^^@\teni subset\tenrm (\teni Dosage[]on
+gShape; Cond\tenrm ! = "\teni Dx\tenrm ")\teni Dosage[]t < \tensy ^^@\teni subs
+et\tenrm (\teni Dosage[]t; Dosage[]t$\tenrm RPKM|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm \ (ligature ``)
+.\tenrm `
+.\tenrm r
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.etc.
+
+
+Overfull \hbox (294.4721pt too wide) in paragraph at lines 184--192
+\tensy ^^@\teni c\tenrm ([]\teni Ptcra[];[] Il\tenrm 2\teni ra[];[] Cd\tenrm 3\
+teni e[];[] Cd\tenrm 3\teni g[];[] Cd\tenrm 3\teni d[];[] Il\tenrm 7\teni r[];[
+] Rag\tenrm 1[]\teni ;[] Rag\tenrm 2[]\teni ;[] Cd\tenrm 247[]\teni ;[] Hes\ten
+rm 1[]\teni ;[] Nrarp[];[] Gata\tenrm 3[]\teni ;[] Bcl\tenrm 11\teni b[];[] Myc
+N[];[] Myc[];[] Tcf\tenrm 7[]\teni ;[] Dtx\tenrm 1[]\teni ;[] Hey\tenrm 1[]\ten
+i ;[] Notch\tenrm 1[]\teni ;[] Notch\tenrm 2[]\teni ;[] Notch\tenrm 3[])$ |
+
+\hbox(7.51782+2.5)x469.75499
+.\tensy ^^@
+.\teni c
+.\tenrm (
+.\hbox(3.8889+0.0)x2.80556, shifted -3.62892
+..\sevensy 0
+.\teni P
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.193 p <- ggplot() + geom_
+                           boxplot(data = Dosage_dt, aes(x = Dosage, y = RPK...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.197 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (21.91254pt too wide) in paragraph at lines 193--197
+\teni Dosage\tenrm )) + \teni facet[]rid\tenrm (\teni :\tenrm ~\teni Cond\tenrm
+ ) + \teni theme[]w\tenrm ()\teni p \tenrm + \teni geom[]ext\tenrm (\teni data 
+\tenrm = \teni Dosage[]ey; aes\tenrm (\teni x \tenrm = \teni Dosage; y \tenrm =
+ \teni RPKM; label \tenrm =|
+
+\hbox(7.5+2.86108)x469.75499, glue set - 1.0
+.\teni D
+.\kern0.27779
+.\teni o
+.\teni s
+.\teni a
+.etc.
+
+! Misplaced alignment tab character &.
+l.198 ![plot of chunk boxplots of "IgG" &
+                                          "Jx" dosage data](figure/boxplots ...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.198 ..." dosage data](figure/boxplots of "IgG" &
+                                                   "Jx" dosage data.png)
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! You can't use `macro parameter character #' in vertical mode.
+l.200 #
+        Visualization for DN dat sets
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.204 DN_
+         dt <- subset(DN_longShape, DN_longShape$RPKM != -99)
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.205 #
+        dt <- subset(timecouse_dt, Rep==1)
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.205 # dt <- subset(timecouse_
+                               dt, Rep==1)
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in math mode.
+l.207 #
+        keyGene <- c('Ptcra', 'Il2ra', 'Cd3e', 'Cd3g','Cd3d', 'Il7r', 'Rag1',
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in math mode.
+l.208 #
+        'Rag2', 'Cd247', 'Hes1', 'Nrarp', 'Gata3', 'Bcl11b', 'MycN', 'Myc',
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in math mode.
+l.209 #
+        'Tcf7', 'Dtx1', 'Hey1', 'Notch1', 'Notch2', 'Notch3')
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.210 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (20.81946pt too wide) in paragraph at lines 204--210
+[]\tenrm DN$[]\teni t < \tensy ^^@\teni subset\tenrm (\teni DN[]ongShape; DN[]o
+ngShape$\tenrm RPKM != -99)  dt <- subset(timecouse$[]\teni t; Rep \tenrm == 1)
+\teni DN[]ey <|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm D
+.\tenrm N
+.\mathon
+.\hbox(4.8611+0.0)x4.66287, shifted 1.49998
+..\seveni d
+.etc.
+
+
+Overfull \hbox (460.49542pt too wide) in paragraph at lines 204--210
+\tensy ^^@\teni subset\tenrm (\teni DN[]t; key \tenrm == 1)\teni keyGene < \ten
+sy ^^@\teni c\tenrm ([]\teni Ptcra[];[] Il\tenrm 2\teni ra[];[] Cd\tenrm 3\teni
+ e[];[] Cd\tenrm 3\teni g[];[] Cd\tenrm 3\teni d[];[] Il\tenrm 7\teni r[];[] Ra
+g\tenrm 1[]\teni ;[] Rag\tenrm 2[]\teni ;[] Cd\tenrm 247[]\teni ;[] Hes\tenrm 1
+[]\teni ;[] Nrarp[];[] Gata\tenrm 3[]\teni ;[] Bcl\tenrm 11\teni b[];[] MycN[];
+[] Myc[];[] Tcf\tenrm 7[]\teni ;[] Dtx\tenrm 1[]\teni ;[] Hey\tenrm 1[]\teni ;[
+] Notch\tenrm 1[]\teni ;[] Notch\tenrm 2[]\teni ;[] Notch\tenrm 3[])$ |
+
+\hbox(7.51782+2.5)x469.75499
+.\tensy ^^@
+.\teni s
+.\teni u
+.\teni b
+.\teni s
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.211 p <- ggplot() + geom_
+                           boxplot(data = DN_dt, aes(x = Cond, y = RPKM, col...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.215 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+)
+! Emergency stop.
+<*> ...ilde  \input ./RNASeq_Suzanne_TimeCourse.md
+                                                  
+*** (job aborted, no legal \end found)
+
+!  ==> Fatal error occurred, no output PDF file produced!
