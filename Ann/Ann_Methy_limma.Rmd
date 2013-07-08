@@ -1,0 +1,308 @@
+```{r knir-opts, echo=FALSE}
+library(knitr)
+opts_chunk$set(message=FALSE)
+```
+## Analysis of Methylation data : +/-2kb from TSS regions 
+```{r load-required-packages, echo=TRUE}
+library(ggplot2)
+library(reshape2)
+library(xtable)
+library(data.table)
+library(RColorBrewer)
+library(gdata)
+library(gplots)
+```
+
+```{r global-options, echo=TRUE}
+# Colorblind Safe!
+# Palette for heatmaps
+mypalette <- brewer.pal(name="PiYG", n=11)
+# Palette for qualitative.
+brewer.qual <- "Set2"
+```
+
+
+```{r alling a data, results='hide', cache=FALSE}
+setwd("/shared/silo_researcher/Gottardo_R/Sangsoon_working/Hamid_Notch/Ann_Data/rawData/Data_12_22_2012/CoreSamples/")
+
+## log2 transfered Mvalue(=ratio of methylation to unmethylation)
+TSS_2kb_Data_Total_fil <- read.table(paste("TSS_2kb/", "All_Samples_TSS_2kb_Data_Total_Filtered.txt", sep=""), header=TRUE)
+BInfo <- TSS_2kb_Data_Total_fil[, 1:7]
+Mvalue <- TSS_2kb_Data_Total_fil[, grep("M_value", colnames(TSS_2kb_Data_Total_fil))]
+
+phenoType <- c("Fresh_transplant" ,"Fresh" ,"Fresh_transplant" ,"Fresh" ,"Fresh_transplant" ,"Cultured" ,"Cultured" ,"Fresh_transplant" ,"Fresh" ,"Cultured" ,"Cultured_transplant" ,"Cultured_transplant" ,"Cultured_transplant" ,"Cultured" ,"Cultured_transplant" ,"Cultured" ,"Fresh" ,"Cultured" ,"Fresh" ,"Fresh" ,"Fresh_transplant" ,"Fresh" ,"Cultured" ,"Cultured_transplant" ,"Cultured_transplant" ,"Fresh_transplant" ,"Fresh_transplant" ,"Fresh_transplant" ,"Fresh_transplant")
+UnitNum <- c(4,5,5,3,7,5,8,6,7,2,2,8,5,1,2,6,4,7,2,1,8,8,4,2,2,4,2,3,2)
+sampleN <- gsub(".M_value", "", names(Mvalue))
+sampleNum <- gsub("Track_", "", sampleN)
+names(Mvalue) <- paste(sampleN,".", phenoType, ".", UnitNum, sep="")
+
+sel <- names(Mvalue)
+
+tempMvalue <- stack(Mvalue, select=sel)
+colnames(tempMvalue) <- c("M_value", "ind")
+
+idd <- as.data.frame(do.call("rbind",strsplit(as.character(tempMvalue$ind), "\\.")))
+colnames(idd) <- c("sample", "phenoType", "Unit")
+rownames(idd) <- NULL
+Mvalue_longShape <- data.frame(idd, tempMvalue$M_value)
+names(Mvalue_longShape) <- c(colnames(idd), "M_value")
+
+Mvalue_longShape$chr <- rep(BInfo$seqnames, length(sel))
+Mvalue_longShape$start <- rep(BInfo$start, length(sel))
+Mvalue_longShape$end <- rep(BInfo$end, length(sel))
+Mvalue_longShape$strand <- rep(BInfo$strand, length(sel))
+Mvalue_longShape$Gene <- rep(BInfo$Gene, length(sel))
+Mvalue_longShape$RefSeq_ID <- rep(BInfo$RefSeq_ID, length(sel))
+
+```
+
+## Comparison of all phenotypes 
+```{r Visualization}
+Mvalue_longShape$phenoType<-reorder(Mvalue_longShape$phenoType, new.order=c("Fresh","Cultured","Fresh_transplant","Cultured_transplant"))
+p <- ggplot(Mvalue_longShape, aes(phenoType, M_value), main="All samples")
+p + geom_boxplot(aes(fill = factor(phenoType)))
+```
+
+## Comparison of all samples over the unit and phenotype 
+```{r Visualization2}
+p <- ggplot(Mvalue_longShape, aes(sample, M_value), main="All samples")
+p + geom_boxplot(aes(fill = factor(phenoType)))+facet_grid(Unit~phenoType)+theme_bw()
+
+p <- ggplot(Mvalue_longShape, aes(Unit, M_value), main="All samples")
+p + geom_boxplot(aes(fill = factor(Unit)))
+
+p <- ggplot(Mvalue_longShape, aes(sample, M_value), main="All samples")
+p + geom_boxplot(aes(fill = factor(Unit)))+facet_grid(Unit~.)+theme_bw()
+
+p <- ggplot(Mvalue_longShape, aes(phenoType, M_value), main="All samples")
+p + geom_boxplot(aes(fill = factor(phenoType)))+facet_grid(.~Unit)+theme_bw()
+```
+
+## Comparison of Fresh and Cultured 
+```{r Visualization3}
+FC_Mvalue_longShape <- subset(Mvalue_longShape, phenoType=="Fresh"|phenoType=="Cultured")
+p <- ggplot(FC_Mvalue_longShape, aes(phenoType, M_value), main="Fresh vs Cultured")
+p + geom_boxplot(aes(fill = factor(phenoType)))
+```
+
+## Comparison of Cultured and Cultured after transplant 
+```{r Visualization4}
+CCT_Mvalue_longShape <- subset(Mvalue_longShape, phenoType=="Cultured"|phenoType=="Cultured_transplant")
+p <- ggplot(CCT_Mvalue_longShape, aes(phenoType, M_value), main="Cultured vs Cultured after Transplant")
+p + geom_boxplot(aes(fill = factor(phenoType)))
+```
+
+## Statistical testing comparing Fresh to Cultured
+```{r limma for Fresh vs Cultured groups, results='asis'}
+library(limma)
+library("qvalue")
+
+FCInd <- which(phenoType=="Fresh"|phenoType=="Cultured")
+FC_Mvalue <- Mvalue[, FCInd]
+FC_phenoType <- phenoType[FCInd]
+design_FC <- model.matrix(~ FC_phenoType , FC_Mvalue)
+fit_FC <- lmFit(FC_Mvalue, design_FC)
+fit_FC <- eBayes(fit_FC)
+topTable_FC <- topTable(fit_FC, coef=2, number=Inf, sort="none")
+row.names(topTable_FC) <- BInfo$Gene
+
+topTable_FC$q_value <-qvalue(topTable_FC$P.Value)$qval
+topTable_FC$Chr <- BInfo$seqnames
+topTable_FC$Start <- BInfo$start
+topTable_FC$End <- BInfo$end
+topTable_FC$Strand <- BInfo$strand
+topTable_FC$RefSeq_ID <- BInfo$RefSeq_ID
+topTable_FC$Gene <- BInfo$Gene
+
+topTable_FC <- topTable_FC[order(abs(topTable_FC$t), decreasing = TRUE),]
+
+topTable_FC_smallP <- topTable_FC[topTable_FC$P.Value < 10^(-4),]
+xt <- xtable(topTable_FC_smallP, type="html")
+print(xt, type="html", include.rownames=FALSE)
+
+```
+
+## Statistical testing comparing Cultured to Cultured after transplant
+```{r Limma for Cultured vs Cultured after Transplant, results='asis'}
+CCTInd <- which(phenoType=="Cultured"|phenoType=="Cultured_transplant")
+CCT_Mvalue <- Mvalue[, CCTInd]
+CCT_phenoType <- phenoType[CCTInd]
+design_CCT <- model.matrix(~ CCT_phenoType , CCT_Mvalue)
+fit_CCT <- lmFit(CCT_Mvalue, design_CCT)
+fit_CCT <- eBayes(fit_CCT)
+topTable_CCT <- topTable(fit_CCT, coef=2, number=Inf, sort="none")
+row.names(topTable_CCT) <- BInfo$Gene
+
+topTable_CCT$q_value <-qvalue(topTable_CCT$P.Value)$qval
+topTable_CCT$Chr <- BInfo$seqnames
+topTable_CCT$Start <- BInfo$start
+topTable_CCT$End <- BInfo$end
+topTable_CCT$Strand <- BInfo$strand
+topTable_CCT$RefSeq_ID <- BInfo$RefSeq_ID
+topTable_CCT$Gene <- BInfo$Gene
+
+topTable_CCT <- topTable_CCT[order(abs(topTable_CCT$t), decreasing = TRUE),]
+
+topTable_CCT_smallP <- topTable_CCT[topTable_CCT$P.Value < 10^(-4),]
+xt <- xtable(topTable_CCT_smallP, type="html")
+print(xt, type="html", include.rownames=FALSE)
+```
+
+## Comparing individual samples within each unit
+## Heatmap for all samples
+```{r Heatmap of all samples}
+color.palette <- mypalette
+ColSideColors <- as.character(UnitNum)
+ColSideColors[ColSideColors=="D3"] <- "grey80"
+ColSideColors[ColSideColors=="D7"] <- "black"
+MvalueM <- as.matrix(Mvalue)
+hc <- hclust(dist(MvalueM), method="ward")
+dd <- as.dendrogram(hc)
+
+## color bar on the top is for Units 
+heatmap.2(MvalueM, Rowv=dd, col=color.palette, breaks=seq(-2, 2, length.out=length(mypalette)+1), trace="none", ColSideColors=ColSideColors, na.color="grey50", labRow="", labCol=sampleNum, xlab="Samples", ylab="Gene")
+```
+## The signal of an individual "3077" is mostly different from other samples.
+## It is reflected in the following comparison too. 
+```{r Indivisual comparisons1, results='asis'}
+comparison <- as.character(c("Track_3077.Fresh_transplant.4", "Track_3105.Fresh.4"))
+tempM <- Mvalue[, comparison]
+rownames(tempM) <- BInfo$Gene
+
+Diff <- tempM[, 2] - tempM[, 1]
+hist(abs(Diff))
+abline(v = mean(abs(Diff)), col = "RED", lwd=3)
+```
+
+```{r Indivisual comparisons2, results='asis'}
+comparison <- as.character(c("Track_3078.Fresh.5", "Track_3079.Fresh_transplant.5"))
+tempM <- Mvalue[, comparison]
+rownames(tempM) <- BInfo$Gene
+
+Diff <- tempM[,2]-tempM[,1]
+hist(abs(Diff))
+abline(v=mean(abs(Diff)), col="RED", lwd=3)
+tempInd <- which(abs(Diff)>2)
+```
+
+```{r Indivisual comparisons3, results='asis'}
+comparison <- as.character(c("Track_3078.Fresh.5", "Track_3087.Cultured.5"))
+tempM <- Mvalue[, comparison]
+rownames(tempM) <- BInfo$Gene
+
+Diff <- tempM[,2]-tempM[,1]
+hist(abs(Diff))
+abline(v=mean(abs(Diff)), col="RED", lwd=3)
+tempInd <- which(abs(Diff)>2)
+```
+
+```{r Indivisual comparisons4, results='asis'}
+comparison <- as.character(c("Track_3079.Fresh_transplant.5", "Track_3098.Cultured_transplant.5"))
+tempM <- Mvalue[, comparison]
+rownames(tempM) <- BInfo$Gene
+
+Diff <- tempM[,2]-tempM[,1]
+hist(abs(Diff))
+abline(v=mean(abs(Diff)), col="RED", lwd=3)
+tempInd <- which(abs(Diff)>2)
+
+comparison <- as.character(c("Track_3082.Fresh.3", "Track_3119.Fresh_transplant.3"))
+tempM <- Mvalue[, comparison]
+rownames(tempM) <- BInfo$Gene
+
+Diff <- tempM[,2]-tempM[,1]
+hist(abs(Diff))
+abline(v=mean(abs(Diff)), col="RED", lwd=3)
+tempInd <- which(abs(Diff)>2)
+
+comparison <- as.character(c("Track_3086.Fresh_transplant.7", "Track_3093.Fresh.7"))
+tempM <- Mvalue[, comparison]
+rownames(tempM) <- BInfo$Gene
+
+Diff <- tempM[,2]-tempM[,1]
+hist(abs(Diff))
+abline(v=mean(abs(Diff)), col="RED", lwd=3)
+tempInd <- which(abs(Diff)>2)
+
+comparison <- as.character(c("Track_3087.Cultured.5", "Track_3098.Cultured_transplant.5"))
+tempM <- Mvalue[, comparison]
+rownames(tempM) <- BInfo$Gene
+
+Diff <- tempM[,2]-tempM[,1]
+hist(abs(Diff))
+abline(v=mean(abs(Diff)), col="RED", lwd=3)
+tempInd <- which(abs(Diff)>2)
+
+comparison <- as.character(c("Track_3088.Cultured.8", "Track_3097.Cultured_transplant.8"))
+tempM <- Mvalue[, comparison]
+rownames(tempM) <- BInfo$Gene
+
+Diff <- tempM[,2]-tempM[,1]
+hist(abs(Diff))
+abline(v=mean(abs(Diff)), col="RED", lwd=3)
+tempInd <- which(abs(Diff)>2)
+
+comparison <- as.character(c("Track_3088.Cultured.8", "Track_3112.Fresh.8"))
+tempM <- Mvalue[, comparison]
+rownames(tempM) <- BInfo$Gene
+
+Diff <- tempM[,2]-tempM[,1]
+hist(abs(Diff))
+abline(v=mean(abs(Diff)), col="RED", lwd=3)
+tempInd <- which(abs(Diff)>2)
+
+comparison <- as.character(c("Track_3093.Fresh.7", "Track_3106.Cultured.7"))
+tempM <- Mvalue[, comparison]
+rownames(tempM) <- BInfo$Gene
+
+Diff <- tempM[,2]-tempM[,1]
+hist(abs(Diff))
+abline(v=mean(abs(Diff)), col="RED", lwd=3)
+tempInd <- which(abs(Diff)>2)
+
+comparison <- as.character(c("Track_3097.Cultured_transplant.8", "Track_3111.Fresh_transplant.8"))
+tempM <- Mvalue[, comparison]
+rownames(tempM) <- BInfo$Gene
+
+Diff <- tempM[,2]-tempM[,1]
+hist(abs(Diff))
+abline(v=mean(abs(Diff)), col="RED", lwd=3)
+tempInd <- which(abs(Diff)>2)
+
+comparison <- as.character(c("Track_3102.Cultured.1", "Track_3108.Fresh.1"))
+tempM <- Mvalue[, comparison]
+rownames(tempM) <- BInfo$Gene
+
+Diff <- tempM[,2]-tempM[,1]
+hist(abs(Diff))
+abline(v=mean(abs(Diff)), col="RED", lwd=3)
+tempInd <- which(abs(Diff)>2)
+
+comparison <- as.character(c("Track_3113.Cultured.4", "Track_3105.Fresh.4"))
+tempM <- Mvalue[, comparison]
+rownames(tempM) <- BInfo$Gene
+
+Diff <- tempM[,2]-tempM[,1]
+hist(abs(Diff))
+abline(v=mean(abs(Diff)), col="RED", lwd=3)
+tempInd <- which(abs(Diff)>2)
+
+comparison <- as.character(c("Track_3117.Fresh_transplant.4", "Track_3105.Fresh.4"))
+tempM <- Mvalue[, comparison]
+rownames(tempM) <- BInfo$Gene
+
+Diff <- tempM[,2]-tempM[,1]
+hist(abs(Diff))
+abline(v=mean(abs(Diff)), col="RED", lwd=3)
+tempInd <- which(abs(Diff)>2)
+
+comparison <- as.character(c("Track_3112.Fresh.8", "Track_3111.Fresh_transplant.8"))
+tempM <- Mvalue[, comparison]
+rownames(tempM) <- BInfo$Gene
+
+Diff <- tempM[,2]-tempM[,1]
+hist(abs(Diff))
+abline(v=mean(abs(Diff)), col="RED", lwd=3)
+tempInd <- which(abs(Diff)>2)
+```
+
