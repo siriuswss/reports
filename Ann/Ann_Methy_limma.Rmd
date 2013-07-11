@@ -22,7 +22,7 @@ brewer.qual <- "Set2"
 ```
 
 
-```{r alling a data, results='hide', cache=FALSE}
+```{r calling-data, results='hide', cache=FALSE}
 setwd("/shared/silo_researcher/Gottardo_R/Sangsoon_working/Hamid_Notch/Ann_Data/rawData/Data_12_22_2012/CoreSamples/")
 
 ## log2 transfered Mvalue(=ratio of methylation to unmethylation)
@@ -57,7 +57,7 @@ Mvalue_longShape$RefSeq_ID <- rep(BInfo$RefSeq_ID, length(sel))
 ```
 
 ## Comparison of all phenotypes 
-```{r Visualization}
+```{r Visualization1}
 Mvalue_longShape$phenoType<-reorder(Mvalue_longShape$phenoType, new.order=c("Fresh","Cultured","Fresh_transplant","Cultured_transplant"))
 p <- ggplot(Mvalue_longShape, aes(phenoType, M_value), main="All samples")
 p + geom_boxplot(aes(fill = factor(phenoType)))
@@ -92,8 +92,15 @@ p <- ggplot(CCT_Mvalue_longShape, aes(phenoType, M_value), main="Cultured vs Cul
 p + geom_boxplot(aes(fill = factor(phenoType)))
 ```
 
+## Comparison of Fresh after Transplant and Cultured after Transplant
+```{r Visualization5}
+FTCT_Mvalue_longShape <- subset(Mvalue_longShape, phenoType=="Fresh_transplant"|phenoType=="Cultured_transplant")
+p <- ggplot(FTCT_Mvalue_longShape, aes(phenoType, M_value), main="Fresh after Transplant vs Cultured after Transplant")
+p + geom_boxplot(aes(fill = factor(phenoType)))
+```
+
 ## Statistical testing comparing Fresh to Cultured
-```{r limma for Fresh vs Cultured groups, results='asis'}
+```{r limma-Fresh_vs_Cultured, results='asis'}
 library(limma)
 library("qvalue")
 
@@ -123,7 +130,7 @@ print(xt, type="html", include.rownames=FALSE)
 ```
 
 ## Statistical testing comparing Cultured to Cultured after transplant
-```{r Limma for Cultured vs Cultured after Transplant, results='asis'}
+```{r Limma-Cultured_vs_TransplantCultured, results='asis'}
 CCTInd <- which(phenoType=="Cultured"|phenoType=="Cultured_transplant")
 CCT_Mvalue <- Mvalue[, CCTInd]
 CCT_phenoType <- phenoType[CCTInd]
@@ -148,9 +155,35 @@ xt <- xtable(topTable_CCT_smallP, type="html")
 print(xt, type="html", include.rownames=FALSE)
 ```
 
+## Statistical testing comparing Cultured to Cultured after transplant
+```{r Limma-TransplantFresh_vs_TransplantCultured, results='asis'}
+FTCTInd <- which(phenoType=="Fresh_transplant"|phenoType=="Cultured_transplant")
+FTCT_Mvalue <- Mvalue[, FTCTInd]
+FTCT_phenoType <- phenoType[FTCTInd]
+design_FTCT <- model.matrix(~ FTCT_phenoType , FTCT_Mvalue)
+fit_FTCT <- lmFit(FTCT_Mvalue, design_FTCT)
+fit_FTCT <- eBayes(fit_FTCT)
+topTable_FTCT <- topTable(fit_FTCT, coef=2, number=Inf, sort="none")
+row.names(topTable_FTCT) <- BInfo$Gene
+
+topTable_FTCT$q_value <-qvalue(topTable_FTCT$P.Value)$qval
+topTable_FTCT$Chr <- BInfo$seqnames
+topTable_FTCT$Start <- BInfo$start
+topTable_FTCT$End <- BInfo$end
+topTable_FTCT$Strand <- BInfo$strand
+topTable_FTCT$RefSeq_ID <- BInfo$RefSeq_ID
+topTable_FTCT$Gene <- BInfo$Gene
+
+topTable_FTCT <- topTable_FTCT[order(abs(topTable_FTCT$t), decreasing = TRUE),]
+
+topTable_FTCT_smallP <- topTable_FTCT[topTable_FTCT$P.Value < 10^(-4),]
+xt <- xtable(topTable_FTCT_smallP, type="html")
+print(xt, type="html", include.rownames=FALSE)
+```
+
 ## Comparing individual samples within each unit
 ## Heatmap for all samples
-```{r Heatmap of all samples}
+```{r Heatmap_all_samples}
 color.palette <- mypalette
 ColSideColors <- as.character(UnitNum)
 ColSideColors[ColSideColors=="D3"] <- "grey80"
@@ -164,7 +197,7 @@ heatmap.2(MvalueM, Rowv=dd, col=color.palette, breaks=seq(-2, 2, length.out=leng
 ```
 ## The signal of an individual "3077" is mostly different from other samples.
 ## It is reflected in the following comparison too. 
-```{r Indivisual comparisons1, results='asis'}
+```{r Indivisual_comparisons1, results='asis'}
 comparison <- as.character(c("Track_3077.Fresh_transplant.4", "Track_3105.Fresh.4"))
 tempM <- Mvalue[, comparison]
 rownames(tempM) <- BInfo$Gene
@@ -196,7 +229,7 @@ abline(v=mean(abs(Diff)), col="RED", lwd=3)
 tempInd <- which(abs(Diff)>2)
 ```
 
-```{r Indivisual comparisons4, results='asis'}
+```{r Indivisual_comparisons4, results='asis'}
 comparison <- as.character(c("Track_3079.Fresh_transplant.5", "Track_3098.Cultured_transplant.5"))
 tempM <- Mvalue[, comparison]
 rownames(tempM) <- BInfo$Gene

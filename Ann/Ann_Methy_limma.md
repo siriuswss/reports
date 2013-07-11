@@ -75,7 +75,7 @@ p <- ggplot(Mvalue_longShape, aes(phenoType, M_value), main = "All samples")
 p + geom_boxplot(aes(fill = factor(phenoType)))
 ```
 
-![plot of chunk Visualization](figure/Visualization.png) 
+![plot of chunk Visualization1](figure/Visualization1.png) 
 
 
 ## Comparison of all samples over the unit and phenotype 
@@ -137,6 +137,18 @@ p + geom_boxplot(aes(fill = factor(phenoType)))
 ![plot of chunk Visualization4](figure/Visualization4.png) 
 
 
+## Comparison of Fresh after Transplant and Cultured after Transplant
+
+```r
+FTCT_Mvalue_longShape <- subset(Mvalue_longShape, phenoType == "Fresh_transplant" | 
+    phenoType == "Cultured_transplant")
+p <- ggplot(FTCT_Mvalue_longShape, aes(phenoType, M_value), main = "Fresh after Transplant vs Cultured after Transplant")
+p + geom_boxplot(aes(fill = factor(phenoType)))
+```
+
+![plot of chunk Visualization5](figure/Visualization5.png) 
+
+
 ## Statistical testing comparing Fresh to Cultured
 
 ```r
@@ -175,7 +187,7 @@ print(xt, type = "html", include.rownames = FALSE)
 ```
 
 <!-- html table generated in R 3.0.1 by xtable 1.7-1 package -->
-<!-- Mon Jul  8 15:36:01 2013 -->
+<!-- Thu Jul 11 13:56:50 2013 -->
 <TABLE border=1>
 <TR> <TH> logFC </TH> <TH> t </TH> <TH> P.Value </TH> <TH> adj.P.Val </TH> <TH> B </TH> <TH> q_value </TH> <TH> Chr </TH> <TH> Start </TH> <TH> End </TH> <TH> Strand </TH> <TH> RefSeq_ID </TH> <TH> Gene </TH>  </TR>
   <TR> <TD align="right"> -3.18 </TD> <TD align="right"> -8.52 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 6.31 </TD> <TD align="right"> 0.00 </TD> <TD> chr16 </TD> <TD align="right"> 89029943 </TD> <TD align="right"> 89033943 </TD> <TD> + </TD> <TD> NM_010672 </TD> <TD> Krtap6-1 </TD> </TR>
@@ -238,7 +250,7 @@ print(xt, type = "html", include.rownames = FALSE)
 ```
 
 <!-- html table generated in R 3.0.1 by xtable 1.7-1 package -->
-<!-- Mon Jul  8 15:36:01 2013 -->
+<!-- Thu Jul 11 13:56:50 2013 -->
 <TABLE border=1>
 <TR> <TH> logFC </TH> <TH> t </TH> <TH> P.Value </TH> <TH> adj.P.Val </TH> <TH> B </TH> <TH> q_value </TH> <TH> Chr </TH> <TH> Start </TH> <TH> End </TH> <TH> Strand </TH> <TH> RefSeq_ID </TH> <TH> Gene </TH>  </TR>
   <TR> <TD align="right"> -7.28 </TD> <TD align="right"> -8.77 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 4.21 </TD> <TD align="right"> 0.00 </TD> <TD> chr11 </TD> <TD align="right"> 60266118 </TD> <TD align="right"> 60270118 </TD> <TD> + </TD> <TD> NM_021354 </TD> <TD> Drg2 </TD> </TR>
@@ -246,6 +258,49 @@ print(xt, type = "html", include.rownames = FALSE)
   <TR> <TD align="right"> -2.52 </TD> <TD align="right"> -5.98 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.09 </TD> <TD align="right"> 1.65 </TD> <TD align="right"> 0.09 </TD> <TD> chr19 </TD> <TD align="right"> 29120392 </TD> <TD align="right"> 29124392 </TD> <TD> - </TD> <TD> NM_021299 </TD> <TD> Ak3 </TD> </TR>
   <TR> <TD align="right"> -2.79 </TD> <TD align="right"> -5.64 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.13 </TD> <TD align="right"> 1.26 </TD> <TD align="right"> 0.13 </TD> <TD> chr2 </TD> <TD align="right"> 28693880 </TD> <TD align="right"> 28697880 </TD> <TD> - </TD> <TD> NM_172977 </TD> <TD> Gtf3c4 </TD> </TR>
   <TR> <TD align="right"> -2.27 </TD> <TD align="right"> -5.47 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.14 </TD> <TD align="right"> 1.04 </TD> <TD align="right"> 0.14 </TD> <TD> chr4 </TD> <TD align="right"> 129782799 </TD> <TD align="right"> 129786799 </TD> <TD> + </TD> <TD> NM_026441 </TD> <TD> Pef1 </TD> </TR>
+   </TABLE>
+
+
+## Statistical testing comparing Cultured to Cultured after transplant
+
+```r
+FTCTInd <- which(phenoType == "Fresh_transplant" | phenoType == "Cultured_transplant")
+FTCT_Mvalue <- Mvalue[, FTCTInd]
+FTCT_phenoType <- phenoType[FTCTInd]
+design_FTCT <- model.matrix(~FTCT_phenoType, FTCT_Mvalue)
+fit_FTCT <- lmFit(FTCT_Mvalue, design_FTCT)
+fit_FTCT <- eBayes(fit_FTCT)
+```
+
+```
+## Warning: Zero sample variances detected, have been offset
+```
+
+```r
+topTable_FTCT <- topTable(fit_FTCT, coef = 2, number = Inf, sort = "none")
+row.names(topTable_FTCT) <- BInfo$Gene
+
+topTable_FTCT$q_value <- qvalue(topTable_FTCT$P.Value)$qval
+topTable_FTCT$Chr <- BInfo$seqnames
+topTable_FTCT$Start <- BInfo$start
+topTable_FTCT$End <- BInfo$end
+topTable_FTCT$Strand <- BInfo$strand
+topTable_FTCT$RefSeq_ID <- BInfo$RefSeq_ID
+topTable_FTCT$Gene <- BInfo$Gene
+
+topTable_FTCT <- topTable_FTCT[order(abs(topTable_FTCT$t), decreasing = TRUE), 
+    ]
+
+topTable_FTCT_smallP <- topTable_FTCT[topTable_FTCT$P.Value < 10^(-4), ]
+xt <- xtable(topTable_FTCT_smallP, type = "html")
+print(xt, type = "html", include.rownames = FALSE)
+```
+
+<!-- html table generated in R 3.0.1 by xtable 1.7-1 package -->
+<!-- Thu Jul 11 13:56:50 2013 -->
+<TABLE border=1>
+<TR> <TH> logFC </TH> <TH> t </TH> <TH> P.Value </TH> <TH> adj.P.Val </TH> <TH> B </TH> <TH> q_value </TH> <TH> Chr </TH> <TH> Start </TH> <TH> End </TH> <TH> Strand </TH> <TH> RefSeq_ID </TH> <TH> Gene </TH>  </TR>
+  <TR> <TD align="right"> 2.69 </TD> <TD align="right"> 5.34 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.59 </TD> <TD align="right"> -4.38 </TD> <TD align="right"> 0.59 </TD> <TD> chr17 </TD> <TD align="right"> 33820403 </TD> <TD align="right"> 33824403 </TD> <TD> - </TD> <TD> NM_029804 </TD> <TD> Hnrnpm </TD> </TR>
    </TABLE>
 
 
@@ -267,7 +322,7 @@ heatmap.2(MvalueM, Rowv = dd, col = color.palette, breaks = seq(-2, 2, length.ou
     labRow = "", labCol = sampleNum, xlab = "Samples", ylab = "Gene")
 ```
 
-![plot of chunk Heatmap of all samples](figure/Heatmap of all samples.png) 
+![plot of chunk Heatmap_all_samples](figure/Heatmap_all_samples.png) 
 
 ## The signal of an individual "3077" is mostly different from other samples.
 ## It is reflected in the following comparison too. 
@@ -282,7 +337,7 @@ hist(abs(Diff))
 abline(v = mean(abs(Diff)), col = "RED", lwd = 3)
 ```
 
-![plot of chunk Indivisual comparisons1](figure/Indivisual comparisons1.png) 
+![plot of chunk Indivisual_comparisons1](figure/Indivisual_comparisons1.png) 
 
 
 
@@ -332,7 +387,7 @@ hist(abs(Diff))
 abline(v = mean(abs(Diff)), col = "RED", lwd = 3)
 ```
 
-![plot of chunk Indivisual comparisons4](figure/Indivisual comparisons41.png) 
+![plot of chunk Indivisual_comparisons4](figure/Indivisual_comparisons41.png) 
 
 ```r
 tempInd <- which(abs(Diff) > 2)
@@ -346,7 +401,7 @@ hist(abs(Diff))
 abline(v = mean(abs(Diff)), col = "RED", lwd = 3)
 ```
 
-![plot of chunk Indivisual comparisons4](figure/Indivisual comparisons42.png) 
+![plot of chunk Indivisual_comparisons4](figure/Indivisual_comparisons42.png) 
 
 ```r
 tempInd <- which(abs(Diff) > 2)
@@ -360,7 +415,7 @@ hist(abs(Diff))
 abline(v = mean(abs(Diff)), col = "RED", lwd = 3)
 ```
 
-![plot of chunk Indivisual comparisons4](figure/Indivisual comparisons43.png) 
+![plot of chunk Indivisual_comparisons4](figure/Indivisual_comparisons43.png) 
 
 ```r
 tempInd <- which(abs(Diff) > 2)
@@ -374,7 +429,7 @@ hist(abs(Diff))
 abline(v = mean(abs(Diff)), col = "RED", lwd = 3)
 ```
 
-![plot of chunk Indivisual comparisons4](figure/Indivisual comparisons44.png) 
+![plot of chunk Indivisual_comparisons4](figure/Indivisual_comparisons44.png) 
 
 ```r
 tempInd <- which(abs(Diff) > 2)
@@ -388,7 +443,7 @@ hist(abs(Diff))
 abline(v = mean(abs(Diff)), col = "RED", lwd = 3)
 ```
 
-![plot of chunk Indivisual comparisons4](figure/Indivisual comparisons45.png) 
+![plot of chunk Indivisual_comparisons4](figure/Indivisual_comparisons45.png) 
 
 ```r
 tempInd <- which(abs(Diff) > 2)
@@ -402,7 +457,7 @@ hist(abs(Diff))
 abline(v = mean(abs(Diff)), col = "RED", lwd = 3)
 ```
 
-![plot of chunk Indivisual comparisons4](figure/Indivisual comparisons46.png) 
+![plot of chunk Indivisual_comparisons4](figure/Indivisual_comparisons46.png) 
 
 ```r
 tempInd <- which(abs(Diff) > 2)
@@ -416,7 +471,7 @@ hist(abs(Diff))
 abline(v = mean(abs(Diff)), col = "RED", lwd = 3)
 ```
 
-![plot of chunk Indivisual comparisons4](figure/Indivisual comparisons47.png) 
+![plot of chunk Indivisual_comparisons4](figure/Indivisual_comparisons47.png) 
 
 ```r
 tempInd <- which(abs(Diff) > 2)
@@ -430,7 +485,7 @@ hist(abs(Diff))
 abline(v = mean(abs(Diff)), col = "RED", lwd = 3)
 ```
 
-![plot of chunk Indivisual comparisons4](figure/Indivisual comparisons48.png) 
+![plot of chunk Indivisual_comparisons4](figure/Indivisual_comparisons48.png) 
 
 ```r
 tempInd <- which(abs(Diff) > 2)
@@ -444,7 +499,7 @@ hist(abs(Diff))
 abline(v = mean(abs(Diff)), col = "RED", lwd = 3)
 ```
 
-![plot of chunk Indivisual comparisons4](figure/Indivisual comparisons49.png) 
+![plot of chunk Indivisual_comparisons4](figure/Indivisual_comparisons49.png) 
 
 ```r
 tempInd <- which(abs(Diff) > 2)
@@ -458,7 +513,7 @@ hist(abs(Diff))
 abline(v = mean(abs(Diff)), col = "RED", lwd = 3)
 ```
 
-![plot of chunk Indivisual comparisons4](figure/Indivisual comparisons410.png) 
+![plot of chunk Indivisual_comparisons4](figure/Indivisual_comparisons410.png) 
 
 ```r
 tempInd <- which(abs(Diff) > 2)
@@ -472,7 +527,7 @@ hist(abs(Diff))
 abline(v = mean(abs(Diff)), col = "RED", lwd = 3)
 ```
 
-![plot of chunk Indivisual comparisons4](figure/Indivisual comparisons411.png) 
+![plot of chunk Indivisual_comparisons4](figure/Indivisual_comparisons411.png) 
 
 ```r
 tempInd <- which(abs(Diff) > 2)
@@ -486,7 +541,7 @@ hist(abs(Diff))
 abline(v = mean(abs(Diff)), col = "RED", lwd = 3)
 ```
 
-![plot of chunk Indivisual comparisons4](figure/Indivisual comparisons412.png) 
+![plot of chunk Indivisual_comparisons4](figure/Indivisual_comparisons412.png) 
 
 ```r
 tempInd <- which(abs(Diff) > 2)

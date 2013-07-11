@@ -8,7 +8,7 @@ library(reshape2)
 # library(xtable)
 library(data.table)
 library(RColorBrewer)
-# library(gdata)
+library(gdata)
 library(gplots)
 ```
 
@@ -33,6 +33,26 @@ timecourseRep2 <- read.table(paste("Time_course/Rep2/edgeR/", filename, sep = ""
 timecourseRep2T0 <- data.frame(timecourseRep2[, "T0"])
 rownames(timecourseRep2T0) <- rownames(timecourseRep2)
 names(timecourseRep2T0) <- "T0.2"
+
+sel <- names(timecourseRep2T0)
+temptimecourseT0 <- stack(timecourseRep2T0, select = sel)
+colnames(temptimecourseT0) <- c("RPKM", "ind")
+
+idd <- as.data.frame(do.call("rbind", strsplit(as.character(temptimecourseT0$ind), 
+    "\\.")))
+# idd <- t(id)
+colnames(idd) <- c("Day", "Rep")
+rownames(idd) <- NULL
+timecourseT0_longShape <- data.frame(idd, temptimecourseT0$RPKM)
+names(timecourseT0_longShape) <- c(colnames(idd), "RPKM")
+timecourseT0_longShape$ID <- rep(rownames(timecourseRep2T0), length(sel))
+timecourseT0_longShape$key <- ifelse(timecourseT0_longShape$ID %in% keyID, 1, 
+    0)
+
+save(timecourseT0_longShape, file = "timecourseT0_longShape_Rep2.rda")
+
+
+
 timecourseRep2 <- timecourseRep2[, -4]
 
 n1 <- gsub("_d", ".d", names(timecourseRep2))
@@ -52,6 +72,11 @@ timecourse_longShape <- data.frame(idd, temptimecourse$RPKM)
 names(timecourse_longShape) <- c(colnames(idd), "RPKM")
 timecourse_longShape$ID <- rep(rownames(timecourse), length(sel))
 timecourse_longShape$key <- ifelse(timecourse_longShape$ID %in% keyID, 1, 0)
+timecourse_longShape$Day <- reorder(timecourse_longShape$Day, new.order = c("d7", 
+    "d14", "d21"))
+timecourse_longShape$Cond <- reorder(timecourse_longShape$Cond, new.order = c("WT_Dx", 
+    "N1n_Dx", "WT_IgG"))
+
 save(timecourse_longShape, file = "timecourse_Rep1_Rep2.rda")
 
 filename <- paste("total_data_exon_Dosage_DN_counts_ex_Log2_RPKM_uniqueOverlap.txt", 
@@ -98,59 +123,76 @@ DN_longShape$key <- ifelse(DN_longShape$ID %in% keyID, 1, 0)
 save(DN_longShape, file = "DN_longShape.rda")
 ```
 
-## Visualization for Timecourse dat sets
+## Visualization for Rep1 Timecourse dat sets
 
 ```r
 
-timecouse_dt <- subset(timecourse_longShape, timecourse_longShape$RPKM != -99)
+timecouse_dt <- subset(timecourse_longShape, timecourse_longShape$RPKM != -99 & 
+    Rep == 1)
 # dt <- subset(timecouse_dt, Rep==1)
 timecourse_key <- subset(timecouse_dt, key == 1)
+
 # keyGene <- c('Ptcra', 'Il2ra', 'Cd3e', 'Cd3g','Cd3d', 'Il7r', 'Rag1',
 # 'Rag2', 'Cd247', 'Hes1', 'Nrarp', 'Gata3', 'Bcl11b', 'MycN', 'Myc',
 # 'Tcf7', 'Dtx1', 'Hey1', 'Notch1', 'Notch2', 'Notch3')
-
 p <- ggplot() + geom_boxplot(data = timecouse_dt, aes(x = Cond, y = RPKM, color = Cond, 
-    fill = Cond)) + facet_grid(Day ~ Rep) + theme_bw()
+    fill = Cond)) + facet_grid(. ~ Day)
 p + geom_text(data = timecourse_key, aes(x = Cond, y = RPKM, label = ID))
 ```
 
-![plot of chunk boxplots of Timecourse](figure/boxplots of Timecourse.png) 
+![plot of chunk Rep1](figure/Rep1.png) 
 
-## Visualization for "Dx" dosage data set
+
+
+```r
+timecouse_dt <- subset(timecourse_longShape, timecourse_longShape$RPKM != -99 & 
+    Rep == "2")
+# dt <- subset(timecouse_dt, Rep==1)
+timecourse_key <- subset(timecouse_dt, key == 1)
+
+timecouseT0_dt <- subset(timecourseT0_longShape, timecourseT0_longShape$RPKM != 
+    -99)
+# dt <- subset(timecouse_dt, Rep==1)
+timecourseT0_key <- subset(timecouseT0_dt, key == 1)
+
+p <- ggplot() + geom_boxplot(data = timecouse_dt, aes(x = Cond, y = RPKM, color = Cond, 
+    fill = Cond)) + geom_boxplot(data = timecouseT0_dt, aes(x = Day, y = RPKM, 
+    color = Day, fill = Day)) + facet_grid(. ~ Day)
+p + geom_text(data = timecourse_key, aes(x = Cond, y = RPKM, label = ID)) + 
+    geom_text(data = timecourseT0_key, aes(x = Day, y = RPKM, label = ID))
+```
+
+![plot of chunk Rep2](figure/Rep2.png) 
+
+## Visualization for dosage data set
 
 ```r
 Dosage_dt <- subset(Dosage_longShape, Cond == "Dx")
+# Dosage_dt <- Dosage_longShape
+Dosage_dt$Dosage <- reorder(Dosage_dt$Dosage, new.order = c("0.5", "0.75", "1", 
+    "5"))
 Dosage_dt <- subset(Dosage_dt, Dosage_dt$RPKM != -99)
+
 # dt <- subset(timecouse_dt, Rep==1)
 Dosage_key <- subset(Dosage_dt, key == 1)
 # keyGene <- c('Ptcra', 'Il2ra', 'Cd3e', 'Cd3g','Cd3d', 'Il7r', 'Rag1',
 # 'Rag2', 'Cd247', 'Hes1', 'Nrarp', 'Gata3', 'Bcl11b', 'MycN', 'Myc',
 # 'Tcf7', 'Dtx1', 'Hey1', 'Notch1', 'Notch2', 'Notch3')
+Dosage_dtJx <- subset(Dosage_longShape, Cond == "Jx" | Cond == "IgG")
+# Dosage_dt <- Dosage_longShape
+Dosage_dtJx <- subset(Dosage_dtJx, Dosage_dtJx$RPKM != -99)
 
-p <- ggplot() + geom_boxplot(data = Dosage_dt, aes(x = Dosage, y = RPKM, color = Dosage, 
-    fill = Dosage))  #+facet_grid(.~Dosage)+theme_bw()
-p + geom_text(data = Dosage_key, aes(x = Dosage, y = RPKM, label = ID))
-```
-
-![plot of chunk boxplots of "Dx" dosage data](figure/boxplots of "Dx" dosage data.png) 
-
-## Visualization for "IgG" and "Jx" dosage data set
-
-```r
-Dosage_dt <- subset(Dosage_longShape, Cond != "Dx")
-Dosage_dt <- subset(Dosage_dt, Dosage_dt$RPKM != -99)
 # dt <- subset(timecouse_dt, Rep==1)
-Dosage_key <- subset(Dosage_dt, key == 1)
-# keyGene <- c('Ptcra', 'Il2ra', 'Cd3e', 'Cd3g','Cd3d', 'Il7r', 'Rag1',
-# 'Rag2', 'Cd247', 'Hes1', 'Nrarp', 'Gata3', 'Bcl11b', 'MycN', 'Myc',
-# 'Tcf7', 'Dtx1', 'Hey1', 'Notch1', 'Notch2', 'Notch3')
+Dosage_keyJx <- subset(Dosage_dtJx, key == 1)
 
 p <- ggplot() + geom_boxplot(data = Dosage_dt, aes(x = Dosage, y = RPKM, color = Dosage, 
-    fill = Dosage)) + facet_grid(. ~ Cond) + theme_bw()
-p + geom_text(data = Dosage_key, aes(x = Dosage, y = RPKM, label = ID))
+    fill = Dosage)) + geom_boxplot(data = Dosage_dtJx, aes(x = Cond, y = RPKM, 
+    color = Cond, fill = Cond))  #+facet_grid(.~Dosage)+theme_bw()
+p + geom_text(data = Dosage_key, aes(x = Dosage, y = RPKM, label = ID)) + geom_text(data = Dosage_keyJx, 
+    aes(x = Cond, y = RPKM, label = ID))
 ```
 
-![plot of chunk boxplots of "IgG" & "Jx" dosage data](figure/boxplots of "IgG" & "Jx" dosage data.png) 
+![plot of chunk boxplots_Dx_dosage_data](figure/boxplots_Dx_dosage_data.png) 
 
 # Visualization for DN dat sets
 
@@ -168,7 +210,7 @@ p <- ggplot() + geom_boxplot(data = DN_dt, aes(x = Cond, y = RPKM, color = Cond,
 p + geom_text(data = DN_key, aes(x = Cond, y = RPKM, label = ID))
 ```
 
-![plot of chunk boxplots of DN data](figure/boxplots of DN data.png) 
+![plot of chunk boxplots_DN_data](figure/boxplots_DN_data.png) 
 
 
 
