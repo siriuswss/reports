@@ -123,7 +123,7 @@ DN_longShape$key <- ifelse(DN_longShape$ID %in% keyID, 1, 0)
 save(DN_longShape, file = "DN_longShape.rda")
 ```
 
-## Visualization for Rep1 Timecourse dat sets
+## Visualization for Rep1 Timecourse dat sets: Just for overall difference among Days and Conditions. 
 
 ```r
 
@@ -142,10 +142,6 @@ p
 
 ![plot of chunk Rep1](figure/Rep1.png) 
 
-```r
-# +geom_text(data=timecourse_key, aes(x=Cond, y=RPKM, label=ID))
-```
-
 
 
 ```r
@@ -159,11 +155,10 @@ timecouseT0_dt <- subset(timecourseT0_longShape, timecourseT0_longShape$RPKM !=
 # dt <- subset(timecouse_dt, Rep==1)
 timecourseT0_key <- subset(timecouseT0_dt, key == 1)
 
-p <- ggplot() + geom_boxplot(data = timecouse_dt, aes(x = Cond, y = RPKM, color = Cond, 
-    fill = Cond)) + geom_boxplot(data = timecouseT0_dt, aes(x = Day, y = RPKM, 
-    color = Day, fill = Day)) + facet_grid(. ~ Day)
-p + geom_text(data = timecourse_key, aes(x = Cond, y = RPKM, label = ID)) + 
-    geom_text(data = timecourseT0_key, aes(x = Day, y = RPKM, label = ID))
+p <- ggplot() + geom_boxplot(data = timecouse_dt, aes(x = Cond, y = RPKM, fill = Cond)) + 
+    geom_boxplot(data = timecouseT0_dt, aes(x = Day, y = RPKM, fill = Day)) + 
+    facet_grid(. ~ Day)
+p
 ```
 
 ![plot of chunk Rep2](figure/Rep2.png) 
@@ -189,11 +184,9 @@ Dosage_dtJx <- subset(Dosage_dtJx, Dosage_dtJx$RPKM != -99)
 # dt <- subset(timecouse_dt, Rep==1)
 Dosage_keyJx <- subset(Dosage_dtJx, key == 1)
 
-p <- ggplot() + geom_boxplot(data = Dosage_dt, aes(x = Dosage, y = RPKM, color = Dosage, 
-    fill = Dosage)) + geom_boxplot(data = Dosage_dtJx, aes(x = Cond, y = RPKM, 
-    color = Cond, fill = Cond))  #+facet_grid(.~Dosage)+theme_bw()
-p + geom_text(data = Dosage_key, aes(x = Dosage, y = RPKM, label = ID)) + geom_text(data = Dosage_keyJx, 
-    aes(x = Cond, y = RPKM, label = ID))
+p <- ggplot() + geom_boxplot(data = Dosage_dt, aes(x = Dosage, y = RPKM, fill = Dosage)) + 
+    geom_boxplot(data = Dosage_dtJx, aes(x = Cond, y = RPKM, fill = Cond))  #+facet_grid(.~Dosage)+theme_bw()
+p
 ```
 
 ![plot of chunk boxplots_Dx_dosage_data](figure/boxplots_Dx_dosage_data.png) 
@@ -209,12 +202,10 @@ DN_key <- subset(DN_dt, key == 1)
 # 'Rag2', 'Cd247', 'Hes1', 'Nrarp', 'Gata3', 'Bcl11b', 'MycN', 'Myc',
 # 'Tcf7', 'Dtx1', 'Hey1', 'Notch1', 'Notch2', 'Notch3')
 
-p <- ggplot() + geom_boxplot(data = DN_dt, aes(x = Cond, y = RPKM, color = Cond, 
-    fill = Cond))
-p + geom_text(data = DN_key, aes(x = Cond, y = RPKM, label = ID))
+p <- ggplot() + geom_boxplot(data = DN_dt, aes(x = Cond, y = RPKM, fill = Cond))
+p
 ```
 
 ![plot of chunk boxplots_DN_data](figure/boxplots_DN_data.png) 
-
 
 

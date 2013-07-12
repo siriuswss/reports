@@ -187,7 +187,7 @@ print(xt, type = "html", include.rownames = FALSE)
 ```
 
 <!-- html table generated in R 3.0.1 by xtable 1.7-1 package -->
-<!-- Thu Jul 11 13:56:50 2013 -->
+<!-- Thu Jul 11 15:56:40 2013 -->
 <TABLE border=1>
 <TR> <TH> logFC </TH> <TH> t </TH> <TH> P.Value </TH> <TH> adj.P.Val </TH> <TH> B </TH> <TH> q_value </TH> <TH> Chr </TH> <TH> Start </TH> <TH> End </TH> <TH> Strand </TH> <TH> RefSeq_ID </TH> <TH> Gene </TH>  </TR>
   <TR> <TD align="right"> -3.18 </TD> <TD align="right"> -8.52 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 6.31 </TD> <TD align="right"> 0.00 </TD> <TD> chr16 </TD> <TD align="right"> 89029943 </TD> <TD align="right"> 89033943 </TD> <TD> + </TD> <TD> NM_010672 </TD> <TD> Krtap6-1 </TD> </TR>
@@ -250,7 +250,7 @@ print(xt, type = "html", include.rownames = FALSE)
 ```
 
 <!-- html table generated in R 3.0.1 by xtable 1.7-1 package -->
-<!-- Thu Jul 11 13:56:50 2013 -->
+<!-- Thu Jul 11 15:56:41 2013 -->
 <TABLE border=1>
 <TR> <TH> logFC </TH> <TH> t </TH> <TH> P.Value </TH> <TH> adj.P.Val </TH> <TH> B </TH> <TH> q_value </TH> <TH> Chr </TH> <TH> Start </TH> <TH> End </TH> <TH> Strand </TH> <TH> RefSeq_ID </TH> <TH> Gene </TH>  </TR>
   <TR> <TD align="right"> -7.28 </TD> <TD align="right"> -8.77 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 4.21 </TD> <TD align="right"> 0.00 </TD> <TD> chr11 </TD> <TD align="right"> 60266118 </TD> <TD align="right"> 60270118 </TD> <TD> + </TD> <TD> NM_021354 </TD> <TD> Drg2 </TD> </TR>
@@ -297,7 +297,7 @@ print(xt, type = "html", include.rownames = FALSE)
 ```
 
 <!-- html table generated in R 3.0.1 by xtable 1.7-1 package -->
-<!-- Thu Jul 11 13:56:50 2013 -->
+<!-- Thu Jul 11 15:56:41 2013 -->
 <TABLE border=1>
 <TR> <TH> logFC </TH> <TH> t </TH> <TH> P.Value </TH> <TH> adj.P.Val </TH> <TH> B </TH> <TH> q_value </TH> <TH> Chr </TH> <TH> Start </TH> <TH> End </TH> <TH> Strand </TH> <TH> RefSeq_ID </TH> <TH> Gene </TH>  </TR>
   <TR> <TD align="right"> 2.69 </TD> <TD align="right"> 5.34 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.59 </TD> <TD align="right"> -4.38 </TD> <TD align="right"> 0.59 </TD> <TD> chr17 </TD> <TD align="right"> 33820403 </TD> <TD align="right"> 33824403 </TD> <TD> - </TD> <TD> NM_029804 </TD> <TD> Hnrnpm </TD> </TR>
