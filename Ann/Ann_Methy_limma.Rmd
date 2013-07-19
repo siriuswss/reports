@@ -198,11 +198,11 @@ heatmap.2(MvalueM, Rowv=dd, col=color.palette, breaks=seq(-2, 2, length.out=leng
 ## The signal of an individual "3077" is mostly different from other samples.
 ```{r correlation among individuals, results='asis'}
 SamplesCor <- cor(Mvalue)
-#hc <- hclust(dist(SamplesCor), method="ward")
-#dd <- as.dendrogram(hc)
+hc <- hclust(dist(SamplesCor), method="ward")
+dd <- as.dendrogram(hc)
 
 ## color bar on the top is for Units 
-heatmap.2(SamplesCor, Rowv=NULL, Colv=NULL, col=color.palette, trace="none", ColSideColors=ColSideColors, na.color="grey50",labRow=sampleNum,  labCol=sampleNum, main="Correlation")
+heatmap.2(SamplesCor, Rowv=dd, Colv=dd, col=color.palette, trace="none", ColSideColors=ColSideColors, na.color="grey50",labRow=sampleNum,  labCol=sampleNum, main="Correlation")
 
 ```
 
