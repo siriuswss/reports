@@ -155,7 +155,7 @@ xt <- xtable(topTable_CCT_smallP, type="html")
 print(xt, type="html", include.rownames=FALSE)
 ```
 
-## Statistical testing comparing Cultured to Cultured after transplant
+## Statistical testing comparing Fresh after Transplant to Cultured after transplant
 ```{r Limma-TransplantFresh_vs_TransplantCultured, results='asis'}
 FTCTInd <- which(phenoType=="Fresh_transplant"|phenoType=="Cultured_transplant")
 FTCT_Mvalue <- Mvalue[, FTCTInd]
@@ -196,7 +196,16 @@ dd <- as.dendrogram(hc)
 heatmap.2(MvalueM, Rowv=dd, col=color.palette, breaks=seq(-2, 2, length.out=length(mypalette)+1), trace="none", ColSideColors=ColSideColors, na.color="grey50", labRow="", labCol=sampleNum, xlab="Samples", ylab="Gene")
 ```
 ## The signal of an individual "3077" is mostly different from other samples.
-## It is reflected in the following comparison too. 
+```{r correlation among individuals, results='asis'}
+SamplesCor <- cor(Mvalue)
+#hc <- hclust(dist(SamplesCor), method="ward")
+#dd <- as.dendrogram(hc)
+
+## color bar on the top is for Units 
+heatmap.2(SamplesCor, Rowv=NULL, Colv=NULL, col=color.palette, trace="none", ColSideColors=ColSideColors, na.color="grey50",labRow=sampleNum,  labCol=sampleNum, main="Correlation")
+
+```
+
 ```{r Indivisual_comparisons1, results='asis'}
 comparison <- as.character(c("Track_3077.Fresh_transplant.4", "Track_3105.Fresh.4"))
 tempM <- Mvalue[, comparison]

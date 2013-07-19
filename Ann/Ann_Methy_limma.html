@@ -341,7 +341,7 @@ print(xt, type = &quot;html&quot;, include.rownames = FALSE)
 
 <!-- html table generated in R 3.0.1 by xtable 1.7-1 package -->
 
-<!-- Thu Jul 11 15:56:40 2013 -->
+<!-- Fri Jul 19 13:00:31 2013 -->
 
 <TABLE border=1>
 <TR> <TH> logFC </TH> <TH> t </TH> <TH> P.Value </TH> <TH> adj.P.Val </TH> <TH> B </TH> <TH> q_value </TH> <TH> Chr </TH> <TH> Start </TH> <TH> End </TH> <TH> Strand </TH> <TH> RefSeq_ID </TH> <TH> Gene </TH>  </TR>
@@ -402,7 +402,7 @@ print(xt, type = &quot;html&quot;, include.rownames = FALSE)
 
 <!-- html table generated in R 3.0.1 by xtable 1.7-1 package -->
 
-<!-- Thu Jul 11 15:56:41 2013 -->
+<!-- Fri Jul 19 13:00:31 2013 -->
 
 <TABLE border=1>
 <TR> <TH> logFC </TH> <TH> t </TH> <TH> P.Value </TH> <TH> adj.P.Val </TH> <TH> B </TH> <TH> q_value </TH> <TH> Chr </TH> <TH> Start </TH> <TH> End </TH> <TH> Strand </TH> <TH> RefSeq_ID </TH> <TH> Gene </TH>  </TR>
@@ -413,7 +413,7 @@ print(xt, type = &quot;html&quot;, include.rownames = FALSE)
   <TR> <TD align="right"> -2.27 </TD> <TD align="right"> -5.47 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.14 </TD> <TD align="right"> 1.04 </TD> <TD align="right"> 0.14 </TD> <TD> chr4 </TD> <TD align="right"> 129782799 </TD> <TD align="right"> 129786799 </TD> <TD> + </TD> <TD> NM_026441 </TD> <TD> Pef1 </TD> </TR>
    </TABLE>
 
-<h2>Statistical testing comparing Cultured to Cultured after transplant</h2>
+<h2>Statistical testing comparing Fresh after Transplant to Cultured after transplant</h2>
 
 <pre><code class="r">FTCTInd &lt;- which(phenoType == &quot;Fresh_transplant&quot; | phenoType == &quot;Cultured_transplant&quot;)
 FTCT_Mvalue &lt;- Mvalue[, FTCTInd]
@@ -447,7 +447,7 @@ print(xt, type = &quot;html&quot;, include.rownames = FALSE)
 
 <!-- html table generated in R 3.0.1 by xtable 1.7-1 package -->
 
-<!-- Thu Jul 11 15:56:41 2013 -->
+<!-- Fri Jul 19 13:00:31 2013 -->
 
 <TABLE border=1>
 <TR> <TH> logFC </TH> <TH> t </TH> <TH> P.Value </TH> <TH> adj.P.Val </TH> <TH> B </TH> <TH> q_value </TH> <TH> Chr </TH> <TH> Start </TH> <TH> End </TH> <TH> Strand </TH> <TH> RefSeq_ID </TH> <TH> Gene </TH>  </TR>
@@ -476,7 +476,24 @@ heatmap.2(MvalueM, Rowv = dd, col = color.palette, breaks = seq(-2, 2, length.ou
 
 <h2>The signal of an individual &ldquo;3077&rdquo; is mostly different from other samples.</h2>
 
-<h2>It is reflected in the following comparison too.</h2>
+<pre><code class="r">SamplesCor &lt;- cor(Mvalue)
+# hc &lt;- hclust(dist(SamplesCor), method=&#39;ward&#39;) dd &lt;- as.dendrogram(hc)
+
+## color bar on the top is for Units
+heatmap.2(SamplesCor, Rowv = NULL, Colv = NULL, col = color.palette, trace = &quot;none&quot;, 
+    ColSideColors = ColSideColors, na.color = &quot;grey50&quot;, labRow = sampleNum, 
+    labCol = sampleNum, main = &quot;Correlation&quot;)
+</code></pre>
+
+<pre><code>## Warning: Discrepancy: Rowv is FALSE, while dendrogram is `both&#39;. Omitting
+## row dendogram.
+</code></pre>
+
+<pre><code>## Warning: Discrepancy: Colv is FALSE, while dendrogram is `none&#39;. Omitting
+## column dendogram.
+</code></pre>
+
+<p><img src="figure/correlation%20among%20individuals.png" alt="plot of chunk correlation among individuals"/> </p>
 
 <pre><code class="r">comparison &lt;- as.character(c(&quot;Track_3077.Fresh_transplant.4&quot;, &quot;Track_3105.Fresh.4&quot;))
 tempM &lt;- Mvalue[, comparison]
